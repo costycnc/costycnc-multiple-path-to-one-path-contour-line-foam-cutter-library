@@ -1,6 +1,4 @@
-# costycnc-multiple-path-to-one-path-contour-line-foam-cutter-library
-
-# How to create a path for CNC hot wire cutting
+               # How to create a path for CNC hot wire cutting
 
 This library is for "wirecutters" is a js library to generate g-Code for a 2D foam styrofoam cutters cnc. 
 
