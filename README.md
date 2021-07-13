@@ -1,5 +1,9 @@
 # costycnc-multiple-path-to-one-path-contour-line-foam-cutter-library
 
+This library is for "wirecutters" is a js library to generate g-Code for a 2D foam styrofoam cutters cnc. 
+
+You can either draw one open path which is the path which the machine will cut or you can draw some closed paths. 
+
 These closed paths (e.g. Letters) must be connected because the cutter cannot leave the raw material like a milling machine. 
 
 This js  helps you to create these connectors.
@@ -8,7 +12,7 @@ This software is tested and is still in development and is used for my costycnc 
 
 Multiple paths to one for foam cutters is a big problem for software creators and i create extract.js library tat is very small and very simple
 
-to transform multiple pat in one line tat passed all path.
+to transform multiple paths in one line that passed all path.
 
 How to combine multiple SVG paths together for foam cutter cnc.
 
@@ -18,13 +22,6 @@ The library extract js transform a matrice with all points of all path in a matr
 
 I don't know yet how is named this alghorithm ... 
 
-The "wirecutter" is a js library to generate g-Code for a 2D wirecutter
-
-You can either draw one open path which is the path which the machine will cut or you can draw some closed paths. 
-
-These closed paths (e.g. Letters) must be connected because the cutter cannot leave the raw material like a milling machine. 
-
-This js  helps you to create these connectors.
 
 This software is tested and is still in development and is used for my costycnc foam cutters 
 
