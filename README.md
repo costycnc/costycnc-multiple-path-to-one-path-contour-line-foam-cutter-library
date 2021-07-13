@@ -1,5 +1,11 @@
 # costycnc-multiple-path-to-one-path-contour-line-foam-cutter-library
 
+These closed paths (e.g. Letters) must be connected because the cutter cannot leave the raw material like a milling machine. 
+
+This js  helps you to create these connectors.
+
+This software is tested and is still in development and is used for my costycnc foam cutters 
+
 Multiple paths to one for foam cutters is a big problem for software creators and i create extract.js library tat is very small and very simple
 
 to transform multiple pat in one line tat passed all path.
