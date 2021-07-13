@@ -21,43 +21,43 @@ measure x <input onchange="display(this.value)" value="1"><br><br>
 
 
 var svg_value;
-var gcode_value;
+var gcode_value="";
 
 
- function openFile(event) {
+         var openFile = function(event) {
+         var input = event.target;
+         var reader = new FileReader();
+		 
+         reader.onload = function(){
+		 var dataURL = reader.result;};
+		 
+		 reader.readAsDataURL(input.files[0]);
+         Potrace.loadImageFromFile(input.files[0]);
 
-    var reader = new FileReader();
-    reader.onload = function(){
-        
-	Potrace.loadImageFromUrl(reader.result);
-	
-         	Potrace.process(function(){
-         	var svgdiv = document.getElementById('svgdiv');
+         gcode_value="";
+			
+         Potrace.process(function(){
+           display(1); //solo prima volta	
+           initialx=Potrace.getdimx();
+           initialy=Potrace.getdimy();
+         });
+
+         };
+
+         function display(nr){
+            var svgdiv = document.getElementById('svgdiv');
          	svgdiv.style.display = 'inline-block';
-            svg_value=Potrace.getSVG(1,1);
-         	svgdiv.innerHTML = "<p>Result:</p>" + svg_value;
-			var gcode = document.getElementById('gcode');
-			gcode_value = Potrace.getSVG1(1,1);
+         	svgdiv.innerHTML = "<p>Result:</p>" + Potrace.getSVG(nr,nr);
+         	gcode_value = Potrace.getSVG1(nr,nr);
          	gcode.value=gcode_value;
-			         
+			
 			initialx=Potrace.getdimx();
             initialy=Potrace.getdimy();
 			console.log("pixel x="+initialx+" y="+initialy);//2.54
 			console.log("inch x="+initialx/96+" y="+initialy/96);//2.54
             console.log("cm x="+(initialx/96)*2.54+" y="+(initialy/96)*2.54);//2.54
-         	});
-	
-	
-	
-    };
-    reader.readAsDataURL(event.target.files[0]);//here many attention because original is loadImageFromFile
-	/*
-	FileReader.readAsArrayBuffer()
-	FileReader.readAsBinaryString()
-	FileReader.readAsDataURL()
-	FileReader.readAsText()
-	*/
-  };
+     	console.log(nr);
+         }
   
   function savesvg(){
 
@@ -76,7 +76,7 @@ var gcode_value;
     link.click();
 	 }
 	 
-         function display(nr){
+         function display1(nr){
 
          	var svgdiv = document.getElementById('svgdiv');
 
