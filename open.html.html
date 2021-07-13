@@ -1,0 +1,105 @@
+
+<html>
+<head>
+</head>
+<body>
+	
+<input type='file' accept='*' onchange='openFile(event)'><br>
+<button onclick="savegcode()">save gcode</button>
+<button onclick="savesvg()">save svg</button>
+measure x <input onchange="display(this.value)" value="1"><br><br>
+<textarea cols="22" id="gcode"  rows="10"></textarea><br>
+      <div id="imgdiv"> </div>
+
+      <div id="svgdiv"> 
+      </div>
+
+<script src="potrace.js"></script>
+<script src="extract.js"></script>
+
+<script>
+
+
+var svg_value;
+var gcode_value;
+
+
+ function openFile(event) {
+
+    var reader = new FileReader();
+    reader.onload = function(){
+        
+	Potrace.loadImageFromUrl(reader.result);
+	
+         	Potrace.process(function(){
+         	var svgdiv = document.getElementById('svgdiv');
+         	svgdiv.style.display = 'inline-block';
+            svg_value=Potrace.getSVG(1,1);
+         	svgdiv.innerHTML = "<p>Result:</p>" + svg_value;
+			var gcode = document.getElementById('gcode');
+			gcode_value = Potrace.getSVG1(1,1);
+         	gcode.value=gcode_value;
+			         
+			initialx=Potrace.getdimx();
+            initialy=Potrace.getdimy();
+			console.log("pixel x="+initialx+" y="+initialy);//2.54
+			console.log("inch x="+initialx/96+" y="+initialy/96);//2.54
+            console.log("cm x="+(initialx/96)*2.54+" y="+(initialy/96)*2.54);//2.54
+         	});
+	
+	
+	
+    };
+    reader.readAsDataURL(event.target.files[0]);//here many attention because original is loadImageFromFile
+	/*
+	FileReader.readAsArrayBuffer()
+	FileReader.readAsBinaryString()
+	FileReader.readAsDataURL()
+	FileReader.readAsText()
+	*/
+  };
+  
+  function savesvg(){
+
+    var link = document.createElement("a");
+    link.setAttribute("href", "data:image/svg+xml;utf8,"+svg_value);//'data:image/svg+xml;utf8,<svg ...> ... </svg>'
+	
+    link.setAttribute("download", "svg.svg");
+    link.click();
+	 }
+	 
+  function savegcode(){
+
+    var link = document.createElement("a");
+    link.setAttribute("href", "data:text/plain,"+gcode_value);
+    link.setAttribute("download", "gcode.nc");
+    link.click();
+	 }
+	 
+         function display(nr){
+
+         	var svgdiv = document.getElementById('svgdiv');
+
+         	svgdiv.style.display = 'inline-block';
+
+         	svgdiv.innerHTML = "<p>Result:</p>" + Potrace.getSVG(nr,nr);
+
+         	var gcode = document.getElementById('gcode')
+         	gcode_value = Potrace.getSVG1(nr,nr);
+         	gcode.value=gcode_value;
+			
+			
+			initialx=Potrace.getdimx();
+            initialy=Potrace.getdimy();
+			console.log("pixel x="+initialx+" y="+initialy);//2.54
+			console.log("inch x="+initialx/96+" y="+initialy/96);//2.54
+            console.log("cm x="+(initialx/96)*2.54+" y="+(initialy/96)*2.54);//2.54
+     	console.log(nr);
+
+         }	 
+	 
+	 
+</script>
+</body>
+</html>
+
