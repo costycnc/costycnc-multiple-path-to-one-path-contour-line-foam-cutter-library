@@ -8,7 +8,7 @@ These closed paths (e.g. Letters) must be connected because the cutter cannot le
 
 This js  helps you to create these connectors.
 
-This software is tested and is still in development and is used for my costycnc foam cutters 
+This software is tested and is still in development and is used for my costycnc foam cutters www.costycnc.it
 
 Multiple paths to one for foam cutters is a big problem for software creators and i create extract.js library tat is very small and very simple
 
